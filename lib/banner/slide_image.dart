@@ -9,10 +9,19 @@ class SlideImage extends StatefulWidget {
 class _SlideImageState extends State<SlideImage> {
   @override
   Widget build(BuildContext context) {
+    var currentWidth = MediaQuery.of(context).size.width;
+    var largeScreenGrid = currentWidth > 1366;
+    var extraLargeScreenGrid = currentWidth > 1366;
+    var smallScreenGrid = currentWidth > 1201;
+    var extraSmallScreenGrid = currentWidth > 1025;
+    var tabScreenGrid = currentWidth > 769;
+    var mobileScreenGrid = currentWidth > 481;
+
     return Container(
+      margin: EdgeInsets.only(left:smallScreenGrid ? 0.0 : 10,right:smallScreenGrid ? 0.0 : 10),
       child: GridView.count(
         crossAxisCount: 1,
-        childAspectRatio: 3.5,
+        childAspectRatio: extraSmallScreenGrid ? 3.5 : largeScreenGrid ? 2.1 : smallScreenGrid ? 2.3 : tabScreenGrid ? 1.8: 1.5,
         crossAxisSpacing: 0.0,
         mainAxisSpacing: 0.0,
         shrinkWrap: true,
@@ -44,7 +53,7 @@ class _SlideImageState extends State<SlideImage> {
                         'https://www.northeastern.edu/graduate/blog/wp-content/uploads/2019/05/BusinessAnalyst_NortheasternGraduateBlog_HeroImage-1.jpeg')
                   ]),
               Container(
-                  margin: EdgeInsets.only(left: 150, top: 60),
+                  margin: EdgeInsets.only(left: smallScreenGrid ?  250 : 10, top: extraSmallScreenGrid ? 60 : largeScreenGrid ? 50 : smallScreenGrid ? 40 : tabScreenGrid ? 80: 80),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -52,14 +61,14 @@ class _SlideImageState extends State<SlideImage> {
                         'Our Services',
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 80,
+                            fontSize: extraSmallScreenGrid ? 80 : largeScreenGrid ? 70 : smallScreenGrid ? 60 : tabScreenGrid ? 35: 35,
                             fontWeight: FontWeight.bold),
                       ),
                       SizedBox(height: 5.0),
                       Text('Help you all of here',
                           style: TextStyle(
                               color: Colors.white,
-                              fontSize: 50,
+                              fontSize:extraSmallScreenGrid ? 80 : largeScreenGrid ? 70 : smallScreenGrid ? 60 : tabScreenGrid ? 35: 35,
                               fontWeight: FontWeight.bold)),
                       Container(
                           margin: EdgeInsets.only(top: 15),
@@ -71,11 +80,11 @@ class _SlideImageState extends State<SlideImage> {
                               shape: new RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(0),
                               ),
-                              padding: EdgeInsets.all(18),
+                              padding: EdgeInsets.all(smallScreenGrid ? 18: 5),
                             ),
                             child: Padding(
                               padding: EdgeInsets.only(
-                                  left: 40, right: 40, top: 2, bottom: 2),
+                                  left: smallScreenGrid ? 40:18, right: smallScreenGrid ? 40:18, top: 2, bottom: 2),
                               child: Text('Post Now',
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 16)),

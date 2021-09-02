@@ -32,8 +32,7 @@ class _PostsState extends State<Posts> {
                         'https://m.media-amazon.com/images/I/819XYUimTuL._AC_SS450_.jpg',
                         fit: BoxFit.cover),
                   ),
-                  Container(
-                    child: Container(
+                   Container(
                       padding: EdgeInsets.all(20),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -58,7 +57,7 @@ class _PostsState extends State<Posts> {
                         ),
                       ),
                     ),
-                  ),
+                 
                 ],
               ),
             ),
@@ -73,8 +72,7 @@ class _PostsState extends State<Posts> {
                         'https://m.media-amazon.com/images/I/819XYUimTuL._AC_SS450_.jpg',
                         fit: BoxFit.cover),
                   ),
-                  Container(
-                    child: Container(
+                   Container(
                       padding: EdgeInsets.all(20),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -99,7 +97,7 @@ class _PostsState extends State<Posts> {
                         ),
                       ),
                     ),
-                  ),
+                  
                 ],
               ),
             ),
@@ -114,8 +112,7 @@ class _PostsState extends State<Posts> {
                         'https://m.media-amazon.com/images/I/819XYUimTuL._AC_SS450_.jpg',
                         fit: BoxFit.cover),
                   ),
-                  Container(
-                    child: Container(
+                   Container(
                       padding: EdgeInsets.all(20),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -140,7 +137,7 @@ class _PostsState extends State<Posts> {
                         ),
                       ),
                     ),
-                  ),
+                  
                 ],
               ),
             ),
@@ -156,6 +153,7 @@ class _PostsState extends State<Posts> {
                         fit: BoxFit.cover),
                   ),
                   Container(
+                     padding: EdgeInsets.all(20),
                       child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       primary: Colors.white,
@@ -192,6 +190,7 @@ class _PostsState extends State<Posts> {
                         fit: BoxFit.cover),
                   ),
                   Container(
+                     padding: EdgeInsets.all(20),
                     child: Container(
                       padding: EdgeInsets.all(20),
                       child: ElevatedButton(

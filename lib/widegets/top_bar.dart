@@ -11,10 +11,19 @@ class TopBar extends StatefulWidget {
 class _TopBarState extends State<TopBar> {
   @override
   Widget build(BuildContext context) {
+    var currentWidth = MediaQuery.of(context).size.width;
+    var extraLargeScreenGrid = currentWidth > 1366;
+    var smallScreenGrid = currentWidth > 1201;
+    var extraSmallScreenGrid = currentWidth > 1025;
+    var tabScreenGrid = currentWidth > 769;
+    var mobileScreenGrid = currentWidth > 481;
+
+
     return Container(
       padding: EdgeInsets.only(left: 20, right: 20),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Container(
+          padding: EdgeInsets.only(right:50),
           child: Row(children: [
             Icon(AntIcons.radar_chart, size: 45, color: Colors.blue),
             Container(
