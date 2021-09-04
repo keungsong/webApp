@@ -21,6 +21,19 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 SlideImage(),
                 Posts(),
+                Container(
+                   margin: EdgeInsets.only(left:100,top: 30,bottom: 30),
+                  child:Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                   
+                    Container(
+                     
+                      child:Text('New Posts',style:TextStyle(fontSize: 30,fontWeight:FontWeight.bold))
+                    )
+                  ],)
+                ),
+                Divider(),
               ],
             ),
           ),

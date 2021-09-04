@@ -37,7 +37,7 @@ class _TopBarState extends State<TopBar> {
         ),
         Container(
           height: 40,
-          width: 400,
+          width: 250,
           child: TextField(
             cursorColor: Colors.blue,
             decoration: InputDecoration(
@@ -123,7 +123,47 @@ class _TopBarState extends State<TopBar> {
                   Padding(
                     padding: EdgeInsets.only(left: 10, right: 20),
                     child: Text(
-                      'About',
+                      'Post Bid',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  )
+                ]),
+                onPressed: () {},
+              ),
+            ),
+            Container(
+              child: TextButton(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0),
+                  ),
+                  padding: EdgeInsets.all(18),
+                ),
+                child: Row(children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 10, right: 20),
+                    child: Text(
+                      'Company',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  )
+                ]),
+                onPressed: () {},
+              ),
+            ),
+            Container(
+              child: TextButton(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0),
+                  ),
+                  padding: EdgeInsets.all(18),
+                ),
+                child: Row(children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 10, right: 20),
+                    child: Text(
+                      'Individual',
                       style: TextStyle(color: Colors.black),
                     ),
                   )
@@ -164,9 +204,33 @@ class _TopBarState extends State<TopBar> {
                 ),
                 child: Row(children: [
                   Padding(
-                    padding: EdgeInsets.only(left: 10, right: 20),
+                    padding: EdgeInsets.only(left: 8, right: 8),
                     child: Text(
                       'Login',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  )
+                ]),
+                onPressed: () {},
+              ),
+            ),
+            
+            Container(
+              padding: EdgeInsets.only(left: 20),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.blue,
+                  elevation: 1,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(0),
+                  ),
+                  padding: EdgeInsets.all(18),
+                ),
+                child: Row(children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 8, right: 8),
+                    child: Text(
+                      'SignUp',
                       style: TextStyle(color: Colors.white),
                     ),
                   )

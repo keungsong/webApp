@@ -52,7 +52,7 @@ class _SlideImageState extends State<SlideImage> {
                     NetworkImage(
                         'https://www.northeastern.edu/graduate/blog/wp-content/uploads/2019/05/BusinessAnalyst_NortheasternGraduateBlog_HeroImage-1.jpeg')
                   ]),
-              Container(
+             /* Container(
                   margin: EdgeInsets.only(left: smallScreenGrid ?  250 : 10, top: extraSmallScreenGrid ? 60 : largeScreenGrid ? 50 : smallScreenGrid ? 40 : tabScreenGrid ? 80: 80),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -70,7 +70,7 @@ class _SlideImageState extends State<SlideImage> {
                               color: Colors.white,
                               fontSize:extraSmallScreenGrid ? 80 : largeScreenGrid ? 70 : smallScreenGrid ? 60 : tabScreenGrid ? 35: 35,
                               fontWeight: FontWeight.bold)),
-                      Container(
+                     Container(
                           margin: EdgeInsets.only(top: 15),
                           child: ElevatedButton(
                             onPressed: () {},
@@ -91,7 +91,8 @@ class _SlideImageState extends State<SlideImage> {
                             ),
                           ))
                     ],
-                  ))
+                  ),
+                  )*/
             ],
           )
         ],
