@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 
-class Posts extends StatefulWidget {
-  Posts({Key key}) : super(key: key);
-
+class NewPostScreen extends StatefulWidget {
   @override
-  _PostsState createState() => _PostsState();
+  _NewPostScreenState createState() => _NewPostScreenState();
 }
 
-class _PostsState extends State<Posts> {
+class _NewPostScreenState extends State<NewPostScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(left: 100, top: 30, right: 100),
       child: Container(
         child: GridView.count(
-          crossAxisCount: 4,
+          crossAxisCount: 2,
           childAspectRatio: 1.40,
           mainAxisSpacing: 30,
           crossAxisSpacing: 30,
@@ -137,48 +135,6 @@ class _PostsState extends State<Posts> {
                         ),
                       ),
                     ),
-                    
-                  
-                ],
-              ),
-            ),
-             Container(
-              child: Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height,
-                    width: MediaQuery.of(context).size.width,
-                    child: Image.network(
-                        'https://nationaltoday.com/wp-content/uploads/2020/02/national-clean-out-your-computer-day.jpg',
-                        fit: BoxFit.cover),
-                  ),
-                   Container(
-                      padding: EdgeInsets.all(20),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(0)),
-                          padding: EdgeInsets.all(18),
-                        ),
-                        onPressed: () {},
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 20, right: 30),
-                              child: Text(
-                                'Detail: Computer for bid',
-                                style: TextStyle(color: Colors.black),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    
                   
                 ],
               ),

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:web_app/banner/slide_image.dart';
+import 'package:web_app/screens/new_post.dart';
 import 'package:web_app/screens/post.dart';
+import 'package:web_app/widegets/bottom_bar.dart';
+import 'package:web_app/widegets/midle_image.dart';
 import 'package:web_app/widegets/top_bar.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SlideImage(),
                 Posts(),
                 Container(
-                   margin: EdgeInsets.only(left:100,top: 30,bottom: 30),
+                   margin: EdgeInsets.only(left:100,top: 30,bottom: 10),
                   child:Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -33,7 +36,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     )
                   ],)
                 ),
-                Divider(),
+                Container(
+                  margin: EdgeInsets.only(left:100,right:100),
+                  child: Divider(
+                    
+                  ),
+                ),
+                NewPostScreen(),
+                MidleImage(),
+                SizedBox(height:100),
+                BottomBarScreen(),
+                
+                Container(
+                  padding: EdgeInsets.only(bottom:20),
+                  child:Center(child: Text('copyright@2021',style: TextStyle(fontSize:18,color:Colors.grey),))
+                )
               ],
             ),
           ),
