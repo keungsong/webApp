@@ -1,7 +1,9 @@
 import 'package:ant_icons/ant_icons.dart';
 import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:web_app/widegets/popup_menu.dart';
+import 'package:web_app/widegets/side_nav_bar.dart';
 
 class TopBar extends StatefulWidget {
   @override
@@ -21,20 +23,60 @@ class _TopBarState extends State<TopBar> {
 
     return Container(
       padding: EdgeInsets.only(left: 20, right: 20),
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween, 
+        children: [
         Container(
           padding: EdgeInsets.only(right:50),
-          child: Row(children: [
-            Icon(AntIcons.radar_chart, size: 45, color: Colors.blue),
+          child: Row(
+            children: [
+              extraLargeScreenGrid ? Container():
+            Container(
+               child: InkWell(
+                 onTap:(){
+                   showMaterialModalBottomSheet(
+                     expand: false,
+                     enableDrag: false,
+                     isDismissible: false,
+                     barrierColor: Colors.transparent,
+                     backgroundColor: Colors.transparent,
+                     duration: Duration(seconds:0),
+                     context: context, builder: (context)=>GestureDetector(
+                       onTap: (){
+                         Navigator.of(context).pop(false);
+                       },
+                     child:Row(
+                children: [
+                  Container(
+                    width: 280,
+                    child: SideNavBar(),
+                  ),
+                  Container(
+                   
+                  ),
+                  Expanded(child: Container(color:Colors.transparent,))
+                ],
+              ),
+                   ));
+                 },
+                 child:Icon(AntIcons.menu),
+               ),
+            ),
+           
+            Icon(FeatherIcons.feather, size: 45, color: Colors.blue),
+
             Container(
                 padding: EdgeInsets.only(left: 5, top: 8),
                 child: Text('Company name',
                     style: TextStyle(
                         fontSize: 25,
                         color: Colors.blue,
-                        fontWeight: FontWeight.bold)))
+                        fontWeight: FontWeight.bold),
+                        ),
+                        )
           ]),
         ),
+        extraLargeScreenGrid?
         Container(
           height: 40,
           width: 250,
@@ -63,7 +105,7 @@ class _TopBarState extends State<TopBar> {
                 hintText: 'Search...'),
             style: TextStyle(fontSize: 16, color: Colors.grey),
           ),
-        ),
+        ):Container(),
         Row(
           children: [
             Container(
@@ -251,9 +293,9 @@ class _TopBarState extends State<TopBar> {
                   child: Stack(
                     children: [
                       Icon(
-                        Icons.language,
+                        Icons.translate,
                         size: 26,
-                        color: Colors.black87,
+                        color: Colors.blue,
                       ),
                     ],
                   ),

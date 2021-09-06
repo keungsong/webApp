@@ -35,7 +35,8 @@ class _PopUpMenuState extends State<PopUpMenu> {
                           padding: EdgeInsets.only(left: 5, top: 5),
                           child: Text('My Favorite')),
                     ]),
-                  ))
+                  )),
+                  
             ]);
   }
 }

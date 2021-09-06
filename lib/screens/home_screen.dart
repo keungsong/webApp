@@ -43,14 +43,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 NewPostScreen(),
-                MidleImage(),
+               // MidleImage(),
+
                 SizedBox(height:100),
+                 Container(
+                  margin: EdgeInsets.only(left:100,right:100),
+                  child: Divider(
+                    
+                  ),
+                ),
                 BottomBarScreen(),
                 
-                Container(
-                  padding: EdgeInsets.only(bottom:20),
-                  child:Center(child: Text('copyright@2021',style: TextStyle(fontSize:18,color:Colors.grey),))
-                )
+               
               ],
             ),
           ),

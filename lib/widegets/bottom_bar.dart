@@ -14,7 +14,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
     return Container(
       padding: EdgeInsets.only(left:100,right:100,top: 50,bottom: 50),
       child: GridView.count(
-        crossAxisCount: 4,
+        crossAxisCount: 1,
       childAspectRatio:1.0,
       mainAxisSpacing:30,
       crossAxisSpacing:30,
@@ -25,12 +25,10 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
           children: [
         Row(
           children: [
-          Icon(AntIcons.radar_chart,
-          size:45,
-          color:Colors.blue),
+          
           Container(
             padding:EdgeInsets.only(left:5,top:8),
-            child:Text('company name',style: TextStyle(color:Colors.black,fontWeight:FontWeight.bold,fontSize: 25),)
+            child:Text('Join Us',style: TextStyle(color:Colors.black,fontWeight:FontWeight.bold,fontSize: 25),)
           )
         ],),
         Container(
@@ -63,98 +61,38 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
             child: Text('+8562012345678',style:TextStyle(fontSize: 15,color:Colors.grey)),)
           ]
         ),
-        )
-        ],),
-        
-         Column(
-          children: [
-        Row(
-          children: [
-         
-          Container(
-            padding:EdgeInsets.only(left:5,top:8),
-            child:Text('Suport',style: TextStyle(color:Colors.black,fontSize: 25),)
-          )
-        ],),
-        Container(
-        padding:EdgeInsets.only(left:8,top:20),
-        child: Row(
-          children:[
-          
-            Padding(padding: EdgeInsets.only(left: 5),
-            child: Text('Bidding',style:TextStyle(fontSize: 15,color:Colors.grey)),)
-          ]
-        ),
-        ),
-         
-        
-        ],),
-         Column(
-          children: [
-        Row(
-          children: [
-         
-          Container(
-            padding:EdgeInsets.only(left:5,top:8),
-            child:Text('About',style: TextStyle(color:Colors.black,fontSize: 25),)
-          )
-        ],),
-        Container(
-        padding:EdgeInsets.only(left:8,top:20),
-        child: Row(
-          children:[
-           
-            Padding(padding: EdgeInsets.only(left: 5),
-            child: Text('About Us',style:TextStyle(fontSize: 15,color:Colors.grey)),)
-          ]
-        ),
         ),
          Container(
         padding:EdgeInsets.only(left:8,top:20),
         child: Row(
           children:[
-          
-            Padding(padding: EdgeInsets.only(left: 5),
-            child: Text('Terms & Conditions',style:TextStyle(fontSize: 15,color:Colors.grey)),)
-          ]
-        ),
-        
-        ),
-         Container(
-        padding:EdgeInsets.only(left:8,top:20),
-        child: Row(
-          children:[
-           
-            Padding(padding: EdgeInsets.only(left: 5),
-            child: Text('Privacy & Policy',style:TextStyle(fontSize: 15,color:Colors.grey)),)
-          ]
-        ),
-        )
-        ],),
-         Column(
-          children: [
-        Row(
-          children: [
-         
-          Container(
-            padding:EdgeInsets.only(left:5,top:8),
-            child:Text('Join Us',style: TextStyle(color:Colors.black,fontSize: 25),)
-          )
-        ],),
-        
-         Container(
-        padding:EdgeInsets.only(left:8,top:20),
-        child: Row(
-          children:[
-            Icon(FeatherIcons.facebook,color:Colors.blue,),
+            Icon(AntIcons.facebook,color:Colors.blue,),
             Padding(padding: EdgeInsets.only(left: 5),
             child: Text('Facebook',style:TextStyle(fontSize: 15,color:Colors.grey)),)
           ]
         ),
         
         ),
+         Container(
+        padding:EdgeInsets.only(left:8,top:20),
+        child: Row(
+          children:[
+            Icon(Icons.location_city,color:Colors.red,),
+            Padding(padding: EdgeInsets.only(left: 5),
+            child: Text('Company Location ',style:TextStyle(fontSize: 15,color:Colors.grey)),)
+          ]
+        ),
         
+        ),
+        SizedBox(height:50),
+         Container(
+          child:Text('copyright@2021',style:TextStyle(fontSize: 18,color:Colors.grey))
+        )
         ],),
+        
+         
+       
+         
         
         
       ]),

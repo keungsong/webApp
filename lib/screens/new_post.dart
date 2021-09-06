@@ -12,7 +12,7 @@ class _NewPostScreenState extends State<NewPostScreen> {
       margin: EdgeInsets.only(left: 100, top: 30, right: 100),
       child: Container(
         child: GridView.count(
-          crossAxisCount: 2,
+          crossAxisCount: 3,
           childAspectRatio: 1.40,
           mainAxisSpacing: 30,
           crossAxisSpacing: 30,

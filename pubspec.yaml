@@ -32,6 +32,7 @@ dependencies:
   ant_icons: ^1.0.0
   feather_icons: ^1.0.1
   ionicons: ^0.1.2
+  modal_bottom_sheet: ^2.0.0
 
 dev_dependencies:
   flutter_test:
