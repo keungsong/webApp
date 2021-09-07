@@ -86,7 +86,13 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
         ),
         SizedBox(height:50),
          Container(
-          child:Text('copyright@2021',style:TextStyle(fontSize: 18,color:Colors.grey))
+           padding: EdgeInsets.only(left:10),
+          child:Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text('copyright@2021',style:TextStyle(fontSize: 18,color:Colors.grey)),
+            ],
+          )
         )
         ],),
         

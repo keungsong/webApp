@@ -30,11 +30,40 @@ class _NewPostScreenState extends State<NewPostScreen> {
                         'https://carsguide-res.cloudinary.com/image/upload/f_auto%2Cfl_lossy%2Cq_auto%2Ct_default/v1/editorial/story/hero_image/1908-Ford-Model-T_0.jpg',
                         fit: BoxFit.cover),
                   ),
-                   Container(
+                   Row(
+
+                     children: [
+                       Container(
+                          padding: EdgeInsets.all(20),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.blue,
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(0)),
+                              padding: EdgeInsets.all(18),
+                            ),
+                            onPressed: () {},
+                            child: Row(
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(left: 20, right: 30),
+                                  child: Text(
+                                    'View',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                                
+                              ],
+                            ),
+                          ),
+                        ),
+                        Container(
                       padding: EdgeInsets.all(20),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
+                          primary: Colors.blue,
                           elevation: 0,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(0)),
@@ -47,14 +76,17 @@ class _NewPostScreenState extends State<NewPostScreen> {
                               padding:
                                   const EdgeInsets.only(left: 20, right: 30),
                               child: Text(
-                                'Detail: Car For Bid',
-                                style: TextStyle(color: Colors.black),
+                                'Apply',
+                                style: TextStyle(color: Colors.white),
                               ),
                             ),
+                            
                           ],
                         ),
                       ),
                     ),
+                     ],
+                   ),
                  
                 ],
               ),
@@ -70,11 +102,40 @@ class _NewPostScreenState extends State<NewPostScreen> {
                         'https://pix10.agoda.net/hotelImages/9065853/-1/142d78192fda46d5b58e14c9d3f2fe51.jpg?s=1024x768',
                         fit: BoxFit.cover),
                   ),
-                   Container(
+                   Row(
+
+                     children: [
+                       Container(
+                          padding: EdgeInsets.all(20),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.blue,
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(0)),
+                              padding: EdgeInsets.all(18),
+                            ),
+                            onPressed: () {},
+                            child: Row(
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(left: 20, right: 30),
+                                  child: Text(
+                                    'View',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                                
+                              ],
+                            ),
+                          ),
+                        ),
+                        Container(
                       padding: EdgeInsets.all(20),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
+                          primary: Colors.blue,
                           elevation: 0,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(0)),
@@ -87,14 +148,18 @@ class _NewPostScreenState extends State<NewPostScreen> {
                               padding:
                                   const EdgeInsets.only(left: 20, right: 30),
                               child: Text(
-                                'Detail: House For Bid',
-                                style: TextStyle(color: Colors.black),
+                                'Apply',
+                                style: TextStyle(color: Colors.white),
                               ),
                             ),
+                            
                           ],
                         ),
                       ),
                     ),
+                     ],
+                   ),
+                 
                   
                 ],
               ),
@@ -110,11 +175,40 @@ class _NewPostScreenState extends State<NewPostScreen> {
                         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP-0fTxb7ntfuu0NRk946XifiT9jgfadZdDiLe1DSg-Rvv6eRFysUtYHsibAevqMET0sI&usqp=CAU',
                         fit: BoxFit.cover),
                   ),
-                   Container(
+                  Row(
+
+                     children: [
+                       Container(
+                          padding: EdgeInsets.all(20),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              primary: Colors.blue,
+                              elevation: 0,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(0)),
+                              padding: EdgeInsets.all(18),
+                            ),
+                            onPressed: () {},
+                            child: Row(
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(left: 20, right: 30),
+                                  child: Text(
+                                    'View',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                ),
+                                
+                              ],
+                            ),
+                          ),
+                        ),
+                        Container(
                       padding: EdgeInsets.all(20),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
+                          primary: Colors.blue,
                           elevation: 0,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(0)),
@@ -127,14 +221,18 @@ class _NewPostScreenState extends State<NewPostScreen> {
                               padding:
                                   const EdgeInsets.only(left: 20, right: 30),
                               child: Text(
-                                'Detail: Land for bid',
-                                style: TextStyle(color: Colors.black),
+                                'Apply',
+                                style: TextStyle(color: Colors.white),
                               ),
                             ),
+                            
                           ],
                         ),
                       ),
                     ),
+                     ],
+                   ),
+                 
                   
                 ],
               ),

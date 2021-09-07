@@ -194,30 +194,47 @@ class _TopBarState extends State<TopBar> {
                               ),
                               Form(
                                 key: _formKey,
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    Padding(
-                                      padding: EdgeInsets.all(8.0),
-                                      child: TextFormField(),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.all(8.0),
-                                      child: TextFormField(),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: RaisedButton(
-                                        child: Text("Submitß"),
-                                        onPressed: () {
-                                          if (_formKey.currentState
-                                              .validate()) {
-                                            _formKey.currentState.save();
-                                          }
-                                        },
+                                child: Container(
+                                 
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: <Widget>[
+                                      Text('Information'),
+                                      Padding(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: TextFormField(
+                                         decoration: InputDecoration(
+                                           
+                                         ),
+                                        ),
                                       ),
-                                    )
-                                  ],
+                                      Padding(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: TextFormField(),
+                                      ),
+                                       Padding(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: TextFormField(),
+                                      ),
+                                       Padding(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: TextFormField(),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: RaisedButton(
+                                          color: Colors.blue,
+                                          child: Text("Post",style: TextStyle(color:Colors.white),),
+                                          onPressed: () {
+                                            if (_formKey.currentState
+                                                .validate()) {
+                                              _formKey.currentState.save();
+                                            }
+                                          },
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],

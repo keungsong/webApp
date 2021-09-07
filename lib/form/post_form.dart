@@ -13,10 +13,7 @@ class _PostFormState extends State<PostForm> {
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: RaisedButton(
-          onPressed: () {},
-          child: Text("Open Popup"),
-        ),
+        child: AlertDialog()
       ),
     );
   }
