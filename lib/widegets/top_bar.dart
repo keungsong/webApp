@@ -2,6 +2,7 @@ import 'package:ant_icons/ant_icons.dart';
 import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:web_app/form/post_form.dart';
 import 'package:web_app/widegets/popup_menu.dart';
 import 'package:web_app/widegets/side_nav_bar.dart';
 
@@ -11,6 +12,7 @@ class TopBar extends StatefulWidget {
 }
 
 class _TopBarState extends State<TopBar> {
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     var currentWidth = MediaQuery.of(context).size.width;
@@ -20,92 +22,91 @@ class _TopBarState extends State<TopBar> {
     var tabScreenGrid = currentWidth > 769;
     var mobileScreenGrid = currentWidth > 481;
 
-
     return Container(
       padding: EdgeInsets.only(left: 20, right: 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween, 
-        children: [
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Container(
-          padding: EdgeInsets.only(right:50),
-          child: Row(
-            children: [
-              extraLargeScreenGrid ? Container():
-            Container(
-               child: InkWell(
-                 onTap:(){
-                   showMaterialModalBottomSheet(
-                     expand: false,
-                     enableDrag: false,
-                     isDismissible: false,
-                     barrierColor: Colors.transparent,
-                     backgroundColor: Colors.transparent,
-                     duration: Duration(seconds:0),
-                     context: context, builder: (context)=>GestureDetector(
-                       onTap: (){
-                         Navigator.of(context).pop(false);
-                       },
-                     child:Row(
-                children: [
-                  Container(
-                    width: 280,
-                    child: SideNavBar(),
+          padding: EdgeInsets.only(right: 50),
+          child: Row(children: [
+            extraLargeScreenGrid
+                ? Container()
+                : Container(
+                    child: InkWell(
+                      onTap: () {
+                        showMaterialModalBottomSheet(
+                            expand: false,
+                            enableDrag: false,
+                            isDismissible: false,
+                            barrierColor: Colors.transparent,
+                            backgroundColor: Colors.transparent,
+                            duration: Duration(seconds: 0),
+                            context: context,
+                            builder: (context) => GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context).pop(false);
+                                  },
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        width: 280,
+                                        child: SideNavBar(),
+                                      ),
+                                      Container(),
+                                      Expanded(
+                                          child: Container(
+                                        color: Colors.transparent,
+                                      ))
+                                    ],
+                                  ),
+                                ));
+                      },
+                      child: Icon(AntIcons.menu),
+                    ),
                   ),
-                  Container(
-                   
-                  ),
-                  Expanded(child: Container(color:Colors.transparent,))
-                ],
-              ),
-                   ));
-                 },
-                 child:Icon(AntIcons.menu),
-               ),
-            ),
-           
             Icon(FeatherIcons.feather, size: 45, color: Colors.blue),
-
             Container(
-                padding: EdgeInsets.only(left: 5, top: 8),
-                child: Text('Company name',
-                    style: TextStyle(
-                        fontSize: 25,
-                        color: Colors.blue,
-                        fontWeight: FontWeight.bold),
-                        ),
-                        )
+              padding: EdgeInsets.only(left: 5, top: 8),
+              child: Text(
+                'Company name',
+                style: TextStyle(
+                    fontSize: 25,
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold),
+              ),
+            )
           ]),
         ),
-        extraLargeScreenGrid?
-        Container(
-          height: 40,
-          width: 250,
-          child: TextField(
-            cursorColor: Colors.blue,
-            decoration: InputDecoration(
-                suffixIcon: Padding(
-                  padding: EdgeInsets.only(right: 10, bottom: 2),
-                  child:
-                      Icon(FeatherIcons.search, color: Colors.blue, size: 22),
+        extraLargeScreenGrid
+            ? Container(
+                height: 40,
+                width: 250,
+                child: TextField(
+                  cursorColor: Colors.blue,
+                  decoration: InputDecoration(
+                      suffixIcon: Padding(
+                        padding: EdgeInsets.only(right: 10, bottom: 2),
+                        child: Icon(FeatherIcons.search,
+                            color: Colors.blue, size: 22),
+                      ),
+                      filled: true,
+                      fillColor: Colors.white,
+                      contentPadding: EdgeInsets.only(left: 25, top: 30),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(25),
+                        ),
+                        borderSide: BorderSide.none,
+                      ),
+                      hintStyle: TextStyle(
+                        fontWeight: FontWeight.normal,
+                        color: Colors.grey,
+                        fontSize: 15,
+                      ),
+                      hintText: 'Search...'),
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
                 ),
-                filled: true,
-                fillColor: Colors.white,
-                contentPadding: EdgeInsets.only(left: 25, top: 30),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(25),
-                  ),
-                  borderSide: BorderSide.none,
-                ),
-                hintStyle: TextStyle(
-                  fontWeight: FontWeight.normal,
-                  color: Colors.grey,
-                  fontSize: 15,
-                ),
-                hintText: 'Search...'),
-            style: TextStyle(fontSize: 16, color: Colors.grey),
-          ),
-        ):Container(),
+              )
+            : Container(),
         Row(
           children: [
             Container(
@@ -170,7 +171,60 @@ class _TopBarState extends State<TopBar> {
                     ),
                   )
                 ]),
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          content: Stack(
+                            overflow: Overflow.visible,
+                            children: <Widget>[
+                              Positioned(
+                                right: -40.0,
+                                top: -40.0,
+                                child: InkResponse(
+                                  onTap: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: CircleAvatar(
+                                    child: Icon(Icons.close),
+                                    backgroundColor: Colors.red,
+                                  ),
+                                ),
+                              ),
+                              Form(
+                                key: _formKey,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: TextFormField(),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: TextFormField(),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: RaisedButton(
+                                        child: Text("Submitß"),
+                                        onPressed: () {
+                                          if (_formKey.currentState
+                                              .validate()) {
+                                            _formKey.currentState.save();
+                                          }
+                                        },
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      });
+                },
               ),
             ),
             Container(
@@ -256,7 +310,6 @@ class _TopBarState extends State<TopBar> {
                 onPressed: () {},
               ),
             ),
-            
             Container(
               padding: EdgeInsets.only(left: 20),
               child: ElevatedButton(
