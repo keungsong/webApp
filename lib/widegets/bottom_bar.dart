@@ -107,10 +107,7 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
                   ]),
                 ),
                 SizedBox(height: 50),
-                Container(
-                  margin: EdgeInsets.only(left: 100, right: 100),
-                  child: Divider(),
-                ),
+               
                 Container(
                     padding: EdgeInsets.only(left: 10),
                     child: Row(
