@@ -36,7 +36,18 @@ class _PopUpMenuState extends State<PopUpMenu> {
                           child: Text('My Favorite')),
                     ]),
                   )),
-                  
+              PopupMenuItem(
+                  value: 2,
+                  child: Container(
+                    height: 50,
+                    width: 130,
+                    child: Row(children: [
+                      Icon(Icons.people, color: Colors.black),
+                      Container(
+                          padding: EdgeInsets.only(left: 5, top: 5),
+                          child: Text('About Us')),
+                    ]),
+                  )),
             ]);
   }
 }

@@ -11,10 +11,6 @@ class _PostFormState extends State<PostForm> {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: AlertDialog()
-      ),
-    );
+    return Container();
   }
 }

@@ -3,6 +3,7 @@ import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:web_app/form/post_form.dart';
+import 'package:web_app/widegets/button_widget.dart';
 import 'package:web_app/widegets/popup_menu.dart';
 import 'package:web_app/widegets/side_nav_bar.dart';
 
@@ -195,7 +196,6 @@ class _TopBarState extends State<TopBar> {
                               Form(
                                 key: _formKey,
                                 child: Container(
-                                 
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: <Widget>[
@@ -203,28 +203,63 @@ class _TopBarState extends State<TopBar> {
                                       Padding(
                                         padding: EdgeInsets.all(8.0),
                                         child: TextFormField(
-                                         decoration: InputDecoration(
-                                           
-                                         ),
+                                          decoration: InputDecoration(
+                                              labelText: 'Name'),
                                         ),
                                       ),
                                       Padding(
                                         padding: EdgeInsets.all(8.0),
-                                        child: TextFormField(),
+                                        child: TextFormField(
+                                          keyboardType: TextInputType.number,
+                                          decoration: InputDecoration(
+                                              labelText: 'price'),
+                                        ),
                                       ),
-                                       Padding(
+                                      Padding(
                                         padding: EdgeInsets.all(8.0),
-                                        child: TextFormField(),
+                                        child: TextFormField(
+                                          decoration: InputDecoration(
+                                              labelText: 'Detail'),
+                                        ),
                                       ),
-                                       Padding(
+                                      SizedBox(
+                                        height: 8,
+                                      ),
+                                      Padding(
                                         padding: EdgeInsets.all(8.0),
-                                        child: TextFormField(),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            ButtonWidget(
+                                              text: 'Select Image',
+                                              icon: Icons.image,
+                                              onClicked: () {},
+                                            ),
+                                            SizedBox(
+                                              height: 8,
+                                            ),
+                                            Text(
+                                              'No Image',
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w500),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 8,
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.all(8.0),
                                         child: RaisedButton(
                                           color: Colors.blue,
-                                          child: Text("Post",style: TextStyle(color:Colors.white),),
+                                          child: Text(
+                                            "Post",
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
                                           onPressed: () {
                                             if (_formKey.currentState
                                                 .validate()) {
