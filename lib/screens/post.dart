@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:web_app/constants/constants.dart';
+import 'package:web_app/helpers/responsive_helper.dart';
 
 class Posts extends StatefulWidget {
   Posts({Key key}) : super(key: key);
@@ -9,8 +10,10 @@ class Posts extends StatefulWidget {
 }
 
 class _PostsState extends State<Posts> {
+  MediaQueryData mediaQuery;
   @override
   Widget build(BuildContext context) {
+    
     return Container(
       margin: EdgeInsets.only(left: 100, top: 30, right: 100),
       child: Container(
@@ -23,6 +26,43 @@ class _PostsState extends State<Posts> {
           physics: const NeverScrollableScrollPhysics(),
           children: [
             Container(
+              height:250,
+              alignment:Alignment.bottomCenter,
+              decoration:BoxDecoration(color: Colors.white,
+              borderRadius: BorderRadius.only(topLeft:Radius.circular(10),
+              topRight:Radius.circular(10),
+              ),
+              
+             
+              image: DecorationImage(image: NetworkImage("https://carsguide-res.cloudinary.com/image/upload/f_auto%2Cfl_lossy%2Cq_auto%2Ct_default/v1/editorial/story/hero_image/1908-Ford-Model-T_0.jpg",
+              ),fit: BoxFit.cover,
+              ),
+              ),
+            ),
+             
+               Container(
+             padding:EdgeInsets.all(10),
+             height:70,
+             width:double.infinity,
+             decoration:BoxDecoration(color: Colors.white,
+             borderRadius:BorderRadius.only(
+               bottomLeft:Radius.circular(10),
+               bottomRight:Radius.circular(10),
+             ),
+             image: DecorationImage(image: NetworkImage("https://carsguide-res.cloudinary.com/image/upload/f_auto%2Cfl_lossy%2Cq_auto%2Ct_default/v1/editorial/story/hero_image/1908-Ford-Model-T_0.jpg",
+              ),fit: BoxFit.cover,
+              ),
+             boxShadow:[
+               BoxShadow(
+                 color:Colors.white,
+                 offset:Offset(0,1),
+                 blurRadius:6.0,
+               )
+             ]),
+             child: Text('DateTime:',maxLines:2),
+               ),
+            
+            /*Container(
               child: Stack(
                 alignment: Alignment.bottomCenter,
                 children: [
@@ -293,7 +333,7 @@ class _PostsState extends State<Posts> {
                   ),
                 ],
               ),
-            ),
+            ),*/
           ],
         ),
       ),

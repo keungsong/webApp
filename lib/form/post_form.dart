@@ -92,7 +92,7 @@ class _PostFormState extends State<PostForm> {
                     padding: EdgeInsets.all(8.0),
                     child: TextFormField(
                       controller: _detailController,
-                      decoration: InputDecoration(labelText: 'Detial'),
+                      decoration: InputDecoration(labelText: 'Detail'),
                       validator: (value) {
                         if (value.isEmpty) {
                           return 'required field';
