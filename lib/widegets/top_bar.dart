@@ -2,7 +2,9 @@ import 'package:ant_icons/ant_icons.dart';
 import 'package:feather_icons/feather_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:web_app/form/login_form.dart';
 import 'package:web_app/form/post_form.dart';
+import 'package:web_app/screens/login.dart';
 import 'package:web_app/widegets/button_widget.dart';
 import 'package:web_app/widegets/popup_menu.dart';
 import 'package:web_app/widegets/side_nav_bar.dart';
@@ -263,7 +265,13 @@ class _TopBarState extends State<TopBar> {
                     ),
                   )
                 ]),
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return LoginForm();
+                      });
+                },
               ),
             ),
             Container(

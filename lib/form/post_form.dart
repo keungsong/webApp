@@ -1,9 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import '../widegets/button_widget.dart';
-import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class PostForm extends StatefulWidget {
   PostForm({Key key}) : super(key: key);
@@ -18,15 +20,18 @@ class _PostFormState extends State<PostForm> {
   var _nameController = TextEditingController();
   var _priceController = TextEditingController();
   var _detailController = TextEditingController();
-
+  ImagePicker imagePicker = ImagePicker();
   File file;
+  //FirebaseStorage storage = FirebaseStorage.instance;
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+  String imgUrl;
 
   Future selectFile() async {
-    final result = await FilePicker.platform.pickFiles(allowMultiple: false);
-    if (result == null) return;
-    final path = result.files.single.path;
+    PickedFile pickedFile = await imagePicker.getImage(
+      source: ImageSource.gallery,
+    );
     setState(() {
-      file = File(path);
+      file = File(pickedFile.path);
     });
   }
 
@@ -109,19 +114,41 @@ class _PostFormState extends State<PostForm> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        ButtonWidget(
-                          text: 'Select Image',
-                          icon: Icons.image,
-                          onClicked: selectFile,
-                        ),
+                        file == null
+                            ? Container(
+                                width: double.infinity,
+                                height: 150,
+                                color: Colors.grey,
+                                child: Center(
+                                  child: RaisedButton(
+                                    onPressed: () {
+                                      selectFile();
+                                    },
+                                    color: Colors.blue,
+                                    child: Text(
+                                      'Select Image',
+                                      style: TextStyle(
+                                          fontSize: 16, color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : GestureDetector(
+                                onTap: () {
+                                  selectFile();
+                                },
+                                child: Container(
+                                  width: double.infinity,
+                                  height: 150,
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          image: FileImage(file),
+                                          fit: BoxFit.cover)),
+                                ),
+                              ),
                         SizedBox(
                           height: 8,
                         ),
-                        Text(
-                          fileImage,
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.w500),
-                        )
                       ],
                     ),
                   ),
