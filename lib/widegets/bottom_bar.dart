@@ -12,7 +12,8 @@ class _BottomBarScreenState extends State<BottomBarScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 100, right: 100, top: 50, bottom: 50),
+      padding: EdgeInsets.only(left: 100, right: 100, top: 30, bottom: 50),
+      color: Colors.grey[100],
       child: GridView.count(
           crossAxisCount: 1,
           childAspectRatio: 1.0,

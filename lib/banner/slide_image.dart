@@ -1,5 +1,6 @@
 import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
+import 'package:web_app/services/firebase_services.dart';
 
 class SlideImage extends StatefulWidget {
   @override
@@ -16,7 +17,7 @@ class _SlideImageState extends State<SlideImage> {
     var extraSmallScreenGrid = currentWidth > 1025;
     var tabScreenGrid = currentWidth > 769;
     var mobileScreenGrid = currentWidth > 481;
-
+  //  FirebaseServices _services = FirebaseServices();
     return Container(
       margin: EdgeInsets.only(left:smallScreenGrid ? 0.0 : 10,right:smallScreenGrid ? 0.0 : 10),
       child: GridView.count(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:web_app/banner/slide_image.dart';
 import 'package:web_app/screens/new_post.dart';
 import 'package:web_app/screens/post.dart';
+import 'package:web_app/widegets/banner_widget.dart';
 import 'package:web_app/widegets/bottom_bar.dart';
 import 'package:web_app/widegets/midle_image.dart';
 import 'package:web_app/widegets/top_bar.dart';
@@ -23,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               children: [
                 SlideImage(),
+               // BannerWidget(),
                 Posts(),
                 Container(
                    margin: EdgeInsets.only(left:100,top: 30,bottom: 10),
@@ -46,12 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
                // MidleImage(),
 
                 SizedBox(height:100),
-                 Container(
-                  margin: EdgeInsets.only(left:100,right:100),
-                  child: Divider(
-                    
-                  ),
-                ),
+                
                 BottomBarScreen(),
                 
                

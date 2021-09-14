@@ -21,7 +21,8 @@ class _TopBarState extends State<TopBar> {
   @override
   Widget build(BuildContext context) {
     var currentWidth = MediaQuery.of(context).size.width;
-    var extraLargeScreenGrid = currentWidth > 1366;
+    var extraLargeScreenGrid = currentWidth > 1536;
+    var largeScreenGrid = currentWidth > 1366;
     var smallScreenGrid = currentWidth > 1201;
     var extraSmallScreenGrid = currentWidth > 1025;
     var tabScreenGrid = currentWidth > 769;
@@ -84,7 +85,7 @@ class _TopBarState extends State<TopBar> {
         extraLargeScreenGrid
             ? Container(
                 height: 40,
-                width: 250,
+                width:largeScreenGrid ? 250 : smallScreenGrid ? 250 : 200,
                 child: TextField(
                   cursorColor: Colors.blue,
                   decoration: InputDecoration(
@@ -112,7 +113,7 @@ class _TopBarState extends State<TopBar> {
                 ),
               )
             : Container(),
-        Row(
+    extraSmallScreenGrid ?   Row(
           children: [
             Container(
               child: Stack(
@@ -274,33 +275,29 @@ class _TopBarState extends State<TopBar> {
                 },
               ),
             ),
-            Container(
-              padding: EdgeInsets.only(left: 20),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.blue,
-                  elevation: 1,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0),
-                  ),
-                  padding: EdgeInsets.all(18),
-                ),
-                child: Row(children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 8, right: 8),
-                    child: Text(
-                      'SignUp',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  )
-                ]),
-                onPressed: () {},
-              ),
-            ),
+            
           ],
-        ),
+        ):Container(),
         Row(
           children: [
+           extraLargeScreenGrid ? Container() : Container(
+              padding: EdgeInsets.only(right: 10),
+              child: Tooltip(
+                message: 'Search',
+                child: Container(
+                  padding: EdgeInsets.all(5),
+                  child: Stack(
+                    children: [
+                      Icon(
+                        Icons.search,
+                        size: 26,
+                        color: Colors.black87,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
             Container(
               padding: EdgeInsets.only(right: 10),
               child: Tooltip(
@@ -319,7 +316,7 @@ class _TopBarState extends State<TopBar> {
                 ),
               ),
             ),
-            Container(
+          tabScreenGrid ?  Container(
               padding: EdgeInsets.only(right: 10),
               child: Tooltip(
                 message: 'Notification',
@@ -345,7 +342,7 @@ class _TopBarState extends State<TopBar> {
                   ),
                 ),
               ),
-            ),
+            ):Container(),
             PopUpMenu(),
           ],
         ),

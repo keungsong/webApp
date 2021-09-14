@@ -19,212 +19,288 @@ class _NewPostScreenState extends State<NewPostScreen> {
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           children: [
-            Container(
-              child: Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height,
-                    width: MediaQuery.of(context).size.width,
-                    child: Image.network(
-                        'https://carsguide-res.cloudinary.com/image/upload/f_auto%2Cfl_lossy%2Cq_auto%2Ct_default/v1/editorial/story/hero_image/1908-Ford-Model-T_0.jpg',
-                        fit: BoxFit.cover),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+            Column(
+              children: [
+                Expanded(
+                                child: Stack(
+                    alignment: Alignment.bottomCenter,
                     children: [
                       Container(
-                        padding: EdgeInsets.all(20),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.blue,
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(0)),
-                            padding: EdgeInsets.all(18),
-                          ),
-                          onPressed: () {},
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 20, right: 30),
-                                child: Text(
-                                  'View',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                        height: MediaQuery.of(context).size.height,
+                        width: MediaQuery.of(context).size.width,
+                        child: Image.network(
+                            'https://carsguide-res.cloudinary.com/image/upload/f_auto%2Cfl_lossy%2Cq_auto%2Ct_default/v1/editorial/story/hero_image/1908-Ford-Model-T_0.jpg',
+                            fit: BoxFit.cover),
                       ),
-                      Container(
-                        padding: EdgeInsets.all(20),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.blue,
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(0)),
-                            padding: EdgeInsets.all(18),
+                      Positioned(
+                        top: 10,
+                        left: 10,
+                        child: SizedBox(
+                          height: 60,
+                          width: 60,
+                          child: CircleAvatar(
+                            backgroundColor: Colors.white,
+                            child: Text('LOGO'),
                           ),
-                          onPressed: () {},
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 20, right: 30),
-                                child: Text(
-                                  'Apply',
-                                  style: TextStyle(color: Colors.white),
-                                ),
+                        )),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.only(left:20,right:10),
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.blue,
+                                elevation: 0,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(0)),
+                                padding: EdgeInsets.all(18),
                               ),
-                            ],
+                              onPressed: () {},
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.only(left: 20, right: 20),
+                                    child: Text(
+                                      'View',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                        ),
+                          Container(
+                            padding: EdgeInsets.all(20),
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.blue,
+                                elevation: 0,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(0)),
+                                padding: EdgeInsets.all(18),
+                              ),
+                              onPressed: () {},
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.only(left: 20, right: 20),
+                                    child: Text(
+                                      'Apply',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
+                      
                     ],
                   ),
-                ],
-              ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(top:10),
+                      
+                            child:Text('Date:9/09/2021')
+                          ),
+                  ],
+                )
+              ],
             ),
-            Container(
-              child: Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height,
-                    width: MediaQuery.of(context).size.width,
-                    child: Image.network(
-                        'https://pix10.agoda.net/hotelImages/9065853/-1/142d78192fda46d5b58e14c9d3f2fe51.jpg?s=1024x768',
-                        fit: BoxFit.cover),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+            Column(
+              children: [
+                Expanded(
+                  child: Stack(
+                    alignment: Alignment.bottomCenter,
                     children: [
                       Container(
-                        padding: EdgeInsets.all(20),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.blue,
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(0)),
-                            padding: EdgeInsets.all(18),
-                          ),
-                          onPressed: () {},
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 20, right: 30),
-                                child: Text(
-                                  'View',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                        height: MediaQuery.of(context).size.height,
+                        width: MediaQuery.of(context).size.width,
+                        child: Image.network(
+                            'https://pix10.agoda.net/hotelImages/9065853/-1/142d78192fda46d5b58e14c9d3f2fe51.jpg?s=1024x768',
+                            fit: BoxFit.cover),
                       ),
-                      Container(
-                        padding: EdgeInsets.all(20),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.blue,
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(0)),
-                            padding: EdgeInsets.all(18),
+                      Positioned(
+                        top: 10,
+                        left: 10,
+                        child: SizedBox(
+                          height: 60,
+                          width: 60,
+                          child: CircleAvatar(
+                            backgroundColor: Colors.white,
+                            child: Text('LOGO'),
                           ),
-                          onPressed: () {},
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 20, right: 30),
-                                child: Text(
-                                  'Apply',
-                                  style: TextStyle(color: Colors.white),
-                                ),
+                        )),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.only(left:20,right:10),
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.blue,
+                                elevation: 0,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(0)),
+                                padding: EdgeInsets.all(18),
                               ),
-                            ],
+                              onPressed: () {},
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.only(left: 20, right: 20),
+                                    child: Text(
+                                      'View',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                        ),
+                          Container(
+                            padding: EdgeInsets.all(20),
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.blue,
+                                elevation: 0,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(0)),
+                                padding: EdgeInsets.all(18),
+                              ),
+                              onPressed: () {},
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.only(left: 20, right: 20),
+                                    child: Text(
+                                      'Apply',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
-              ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(top:10),
+                      
+                            child:Text('Date:9/09/2021')
+                          ),
+                  ],
+                )
+              ],
             ),
-            Container(
-              child: Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height,
-                    width: MediaQuery.of(context).size.width,
-                    child: Image.network(
-                        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP-0fTxb7ntfuu0NRk946XifiT9jgfadZdDiLe1DSg-Rvv6eRFysUtYHsibAevqMET0sI&usqp=CAU',
-                        fit: BoxFit.cover),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+            Column(
+              children: [
+                Expanded(
+                  child: Stack(
+                    alignment: Alignment.bottomCenter,
                     children: [
                       Container(
-                        padding: EdgeInsets.all(20),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.blue,
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(0)),
-                            padding: EdgeInsets.all(18),
-                          ),
-                          onPressed: () {},
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 20, right: 30),
-                                child: Text(
-                                  'View',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                        height: MediaQuery.of(context).size.height,
+                        width: MediaQuery.of(context).size.width,
+                        child: Image.network(
+                            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP-0fTxb7ntfuu0NRk946XifiT9jgfadZdDiLe1DSg-Rvv6eRFysUtYHsibAevqMET0sI&usqp=CAU',
+                            fit: BoxFit.cover),
                       ),
-                      Container(
-                        padding: EdgeInsets.all(20),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.blue,
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(0)),
-                            padding: EdgeInsets.all(18),
+                      Positioned(
+                        top: 10,
+                        left: 10,
+                        child: SizedBox(
+                          height: 60,
+                          width: 60,
+                          child: CircleAvatar(
+                            backgroundColor: Colors.white,
+                            child: Text('LOGO'),
                           ),
-                          onPressed: () {},
-                          child: Row(
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 20, right: 30),
-                                child: Text(
-                                  'Apply',
-                                  style: TextStyle(color: Colors.white),
-                                ),
+                        )),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.only(left:20,right:10),
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.blue,
+                                elevation: 0,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(0)),
+                                padding: EdgeInsets.all(18),
                               ),
-                            ],
+                              onPressed: () {},
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.only(left: 20, right: 20),
+                                    child: Text(
+                                      'View',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                        ),
+                          Container(
+                            padding: EdgeInsets.all(20),
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.blue,
+                                elevation: 0,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(0)),
+                                padding: EdgeInsets.all(18),
+                              ),
+                              onPressed: () {},
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.only(left: 20, right: 20),
+                                    child: Text(
+                                      'Apply',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
-                ],
-              ),
+                ),
+               Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(top:10),
+                      
+                            child:Text('Date:9/09/2021')
+                          ),
+                  ],
+                )
+              ],
             ),
           ],
         ),

@@ -23,7 +23,7 @@ class _PostFormState extends State<PostForm> {
   ImagePicker imagePicker = ImagePicker();
   File file;
   //FirebaseStorage storage = FirebaseStorage.instance;
-  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+  //final Future<FirebaseApp> _initialization = Firebase.initializeApp();
   String imgUrl;
 
   Future selectFile() async {
