@@ -10,6 +10,8 @@ import 'package:web_app/widegets/popup_menu.dart';
 import 'package:web_app/widegets/side_nav_bar.dart';
 
 import '../form/post_form.dart';
+import '../language/lang.dart';
+import '../language/lang.dart';
 
 class TopBar extends StatefulWidget {
   @override
@@ -306,10 +308,16 @@ class _TopBarState extends State<TopBar> {
                   padding: EdgeInsets.all(5),
                   child: Stack(
                     children: [
-                      Icon(
-                        Icons.translate,
-                        size: 26,
-                        color: Colors.blue,
+                      DropdownButton(
+                                              icon: Icon(
+                          Icons.translate,
+                          size: 26,
+                          color: Colors.blue,
+                        ),
+                        items: Lang.languageList().map<DropdownMenuItem<Lang>>((lang)=>DropdownMenuItem(value: lang,
+                          child:Text(lang.flag),
+                          ),
+                          ).toList(),
                       ),
                     ],
                   ),
