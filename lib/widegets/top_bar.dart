@@ -87,7 +87,11 @@ class _TopBarState extends State<TopBar> {
         extraLargeScreenGrid
             ? Container(
                 height: 40,
-                width:largeScreenGrid ? 250 : smallScreenGrid ? 250 : 200,
+                width: largeScreenGrid
+                    ? 250
+                    : smallScreenGrid
+                        ? 250
+                        : 200,
                 child: TextField(
                   cursorColor: Colors.blue,
                   decoration: InputDecoration(
@@ -115,242 +119,249 @@ class _TopBarState extends State<TopBar> {
                 ),
               )
             : Container(),
-    extraSmallScreenGrid ?   Row(
-          children: [
-            Container(
-              child: Stack(
-                alignment: Alignment.topRight,
+        extraSmallScreenGrid
+            ? Row(
                 children: [
-                  TextButton(
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(0),
-                      ),
-                      padding: EdgeInsets.all(18),
-                    ),
-                    child: Row(children: [
-                      Padding(
-                        padding: EdgeInsets.only(left: 10, right: 20),
-                        child: Text(
-                          'Home',
-                          style: TextStyle(color: Colors.black),
+                  Container(
+                    child: Stack(
+                      alignment: Alignment.topRight,
+                      children: [
+                        TextButton(
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(0),
+                            ),
+                            padding: EdgeInsets.all(18),
+                          ),
+                          child: Row(children: [
+                            Padding(
+                              padding: EdgeInsets.only(left: 10, right: 20),
+                              child: Text(
+                                'Home',
+                                style: TextStyle(color: Colors.black),
+                              ),
+                            )
+                          ]),
+                          onPressed: () {},
                         ),
-                      )
-                    ]),
-                    onPressed: () {},
+                      ],
+                    ),
+                  ),
+                  Container(
+                    child: TextButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0),
+                        ),
+                        padding: EdgeInsets.all(18),
+                      ),
+                      child: Row(children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: 10, right: 20),
+                          child: Text(
+                            'Who we are ?',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        )
+                      ]),
+                      onPressed: () {},
+                    ),
+                  ),
+                  Container(
+                    child: TextButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0),
+                        ),
+                        padding: EdgeInsets.all(18),
+                      ),
+                      child: Row(children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: 10, right: 20),
+                          child: Text(
+                            'Post Bid',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        )
+                      ]),
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return PostForm();
+                            });
+                      },
+                    ),
+                  ),
+                  Container(
+                    child: TextButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0),
+                        ),
+                        padding: EdgeInsets.all(18),
+                      ),
+                      child: Row(children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: 10, right: 20),
+                          child: Text(
+                            'Company',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        )
+                      ]),
+                      onPressed: () {},
+                    ),
+                  ),
+                  Container(
+                    child: TextButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0),
+                        ),
+                        padding: EdgeInsets.all(18),
+                      ),
+                      child: Row(children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: 10, right: 20),
+                          child: Text(
+                            'Individual',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        )
+                      ]),
+                      onPressed: () {},
+                    ),
+                  ),
+                  Container(
+                    child: TextButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0),
+                        ),
+                        padding: EdgeInsets.all(18),
+                      ),
+                      child: Row(children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: 10, right: 20),
+                          child: Text(
+                            'Contact us',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        )
+                      ]),
+                      onPressed: () {},
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(left: 20),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: Colors.blue,
+                        elevation: 1,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0),
+                        ),
+                        padding: EdgeInsets.all(18),
+                      ),
+                      child: Row(children: [
+                        Padding(
+                          padding: EdgeInsets.only(left: 8, right: 8),
+                          child: Text(
+                            'Login',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        )
+                      ]),
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return LoginForm();
+                            });
+                      },
+                    ),
                   ),
                 ],
-              ),
-            ),
-            Container(
-              child: TextButton(
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0),
-                  ),
-                  padding: EdgeInsets.all(18),
-                ),
-                child: Row(children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 10, right: 20),
-                    child: Text(
-                      'Who we are ?',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  )
-                ]),
-                onPressed: () {},
-              ),
-            ),
-            Container(
-              child: TextButton(
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0),
-                  ),
-                  padding: EdgeInsets.all(18),
-                ),
-                child: Row(children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 10, right: 20),
-                    child: Text(
-                      'Post Bid',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  )
-                ]),
-                onPressed: () {
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return PostForm();
-                      });
-                },
-              ),
-            ),
-            Container(
-              child: TextButton(
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0),
-                  ),
-                  padding: EdgeInsets.all(18),
-                ),
-                child: Row(children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 10, right: 20),
-                    child: Text(
-                      'Company',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  )
-                ]),
-                onPressed: () {},
-              ),
-            ),
-            Container(
-              child: TextButton(
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0),
-                  ),
-                  padding: EdgeInsets.all(18),
-                ),
-                child: Row(children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 10, right: 20),
-                    child: Text(
-                      'Individual',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  )
-                ]),
-                onPressed: () {},
-              ),
-            ),
-            Container(
-              child: TextButton(
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0),
-                  ),
-                  padding: EdgeInsets.all(18),
-                ),
-                child: Row(children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 10, right: 20),
-                    child: Text(
-                      'Contact us',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  )
-                ]),
-                onPressed: () {},
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 20),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.blue,
-                  elevation: 1,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(0),
-                  ),
-                  padding: EdgeInsets.all(18),
-                ),
-                child: Row(children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 8, right: 8),
-                    child: Text(
-                      'Login',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  )
-                ]),
-                onPressed: () {
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return LoginForm();
-                      });
-                },
-              ),
-            ),
-            
-          ],
-        ):Container(),
+              )
+            : Container(),
         Row(
           children: [
-           extraLargeScreenGrid ? Container() : Container(
-              padding: EdgeInsets.only(right: 10),
-              child: Tooltip(
-                message: 'Search',
-                child: Container(
-                  padding: EdgeInsets.all(5),
-                  child: Stack(
-                    children: [
-                      Icon(
-                        Icons.search,
-                        size: 26,
-                        color: Colors.black87,
+            extraLargeScreenGrid
+                ? Container()
+                : Container(
+                    padding: EdgeInsets.only(right: 10),
+                    child: Tooltip(
+                      message: 'Search',
+                      child: Container(
+                        padding: EdgeInsets.all(5),
+                        child: Stack(
+                          children: [
+                            Icon(
+                              Icons.search,
+                              size: 26,
+                              color: Colors.black87,
+                            ),
+                          ],
+                        ),
                       ),
-                    ],
+                    ),
                   ),
-                ),
-              ),
-            ),
             Container(
               padding: EdgeInsets.only(right: 10),
               child: Tooltip(
                 message: 'Launguges',
-                child: Container(
-                  padding: EdgeInsets.all(5),
-                  child: Stack(
-                    children: [
-                      DropdownButton(
-                                              icon: Icon(
-                          Icons.translate,
-                          size: 26,
-                          color: Colors.blue,
-                        ),
-                        items: Lang.languageList().map<DropdownMenuItem<Lang>>((lang)=>DropdownMenuItem(value: lang,
-                          child:Text(lang.flag),
-                          ),
-                          ).toList(),
-                      ),
-                    ],
+                child: DropdownButton(
+                  underline: SizedBox(),
+                  onChanged: (Lang language) {},
+                  icon: Icon(
+                    Icons.translate,
+                    size: 26,
+                    color: Colors.blue,
                   ),
+                  items: Lang.languageList()
+                      .map<DropdownMenuItem<Lang>>(
+                        (lang) => DropdownMenuItem(
+                            value: lang,
+                            child: Row(
+                              children: [
+                                Text(lang.flag),
+                              ],
+                            )),
+                      )
+                      .toList(),
                 ),
               ),
             ),
-          tabScreenGrid ?  Container(
-              padding: EdgeInsets.only(right: 10),
-              child: Tooltip(
-                message: 'Notification',
-                child: Container(
-                  padding: EdgeInsets.all(5),
-                  child: Stack(
-                    children: [
-                      Icon(
-                        AntIcons.bell_outline,
-                        size: 26,
-                        color: Colors.black87,
+            tabScreenGrid
+                ? Container(
+                    padding: EdgeInsets.only(right: 10),
+                    child: Tooltip(
+                      message: 'Notification',
+                      child: Container(
+                        padding: EdgeInsets.all(5),
+                        child: Stack(
+                          children: [
+                            Icon(
+                              AntIcons.bell_outline,
+                              size: 26,
+                              color: Colors.black87,
+                            ),
+                            Positioned(
+                                top: 2,
+                                right: 4,
+                                child: Stack(
+                                  children: [
+                                    Icon(Icons.brightness_1,
+                                        size: 10, color: Colors.red)
+                                  ],
+                                ))
+                          ],
+                        ),
                       ),
-                      Positioned(
-                          top: 2,
-                          right: 4,
-                          child: Stack(
-                            children: [
-                              Icon(Icons.brightness_1,
-                                  size: 10, color: Colors.red)
-                            ],
-                          ))
-                    ],
-                  ),
-                ),
-              ),
-            ):Container(),
+                    ),
+                  )
+                : Container(),
             PopUpMenu(),
           ],
         ),

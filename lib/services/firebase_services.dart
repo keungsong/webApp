@@ -1,6 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-/*import 'package:cloud_firestore/cloud_firestore.dart';
-class FirebaseServices{
+class FirebaseServices {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  CollectionReference banners= FirebaseFirestore.instance.collection('ImageSlide');
-}*/
+  CollectionReference banners =
+      FirebaseFirestore.instance.collection('ImageSlide');
+}

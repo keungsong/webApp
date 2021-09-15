@@ -1,11 +1,13 @@
-import 'dart:io';
-
+import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import '../widegets/button_widget.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:image_picker_web/image_picker_web.dart';
+import 'package:firebase/firebase.dart' as db;
+import 'package:file_picker/file_picker.dart';
 
 class PostForm extends StatefulWidget {
   PostForm({Key key}) : super(key: key);
@@ -22,17 +24,24 @@ class _PostFormState extends State<PostForm> {
   var _detailController = TextEditingController();
   ImagePicker imagePicker = ImagePicker();
   File file;
+
   //FirebaseStorage storage = FirebaseStorage.instance;
   //final Future<FirebaseApp> _initialization = Firebase.initializeApp();
   String imgUrl;
 
   Future selectFile() async {
-    PickedFile pickedFile = await imagePicker.getImage(
+    /* PickedFile pickedFile = await imagePicker.getImage(
       source: ImageSource.gallery,
     );
     setState(() {
       file = File(pickedFile.path);
-    });
+    });*/
+    final result = await FilePicker.platform.pickFiles(allowMultiple: false);
+
+    if (result == null) return;
+    final path = result.files.single.path;
+
+    // setState(() => file = File(path));
   }
 
   validate() {
@@ -41,7 +50,7 @@ class _PostFormState extends State<PostForm> {
 
   @override
   Widget build(BuildContext context) {
-    final fileImage = file != null ? basename(file.path) : 'No Image Selected';
+    //  final fileImage = file != null ? basename(file.path) : 'No Image Selected';
     return AlertDialog(
       content: Stack(
         overflow: Overflow.visible,
@@ -142,7 +151,7 @@ class _PostFormState extends State<PostForm> {
                                   height: 150,
                                   decoration: BoxDecoration(
                                       image: DecorationImage(
-                                          image: FileImage(file),
+                                          // image: FileImage(file),
                                           fit: BoxFit.cover)),
                                 ),
                               ),
@@ -177,5 +186,18 @@ class _PostFormState extends State<PostForm> {
         ],
       ),
     );
+  }
+
+  void uploadImage({@required Function(File file) onSelected}) {
+    InputElement uploadInput = FileUploadInputElement()..accept = 'image/*';
+    uploadInput.click();
+
+    uploadInput.onChange.listen((event) {
+      final file = uploadInput.files.first;
+      final reader = FileReader();
+      reader.onLoadEnd.listen((event) {
+        onSelected(file);
+      });
+    });
   }
 }

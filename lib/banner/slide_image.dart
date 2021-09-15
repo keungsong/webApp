@@ -1,6 +1,8 @@
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:web_app/services/firebase_services.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class SlideImage extends StatefulWidget {
   @override
@@ -17,12 +19,50 @@ class _SlideImageState extends State<SlideImage> {
     var extraSmallScreenGrid = currentWidth > 1025;
     var tabScreenGrid = currentWidth > 769;
     var mobileScreenGrid = currentWidth > 481;
-  //  FirebaseServices _services = FirebaseServices();
-    return Container(
-      margin: EdgeInsets.only(left:smallScreenGrid ? 0.0 : 10,right:smallScreenGrid ? 0.0 : 10),
+    FirebaseServices _services = FirebaseServices();
+    return StreamBuilder<QuerySnapshot>(
+        stream: _services.banners.snapshots(),
+        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Text('error');
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return Container(
+            width: MediaQuery.of(context).size.width,
+            height: 400,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: snapshot.data.docs.map((DocumentSnapshot document) {
+                return Card(
+                  elevation: 10,
+                  child: Image.network(
+                    document.data()['image'],
+                    fit: BoxFit.fill,
+                  ),
+                );
+              }).toList(),
+            ),
+          );
+        });
+
+    /*Container(
+      margin: EdgeInsets.only(
+          left: smallScreenGrid ? 0.0 : 10, right: smallScreenGrid ? 0.0 : 10),
       child: GridView.count(
         crossAxisCount: 1,
-        childAspectRatio: extraSmallScreenGrid ? 3.5 : largeScreenGrid ? 2.1 : smallScreenGrid ? 2.3 : tabScreenGrid ? 1.8: 1.5,
+        childAspectRatio: extraSmallScreenGrid
+            ? 3.5
+            : largeScreenGrid
+                ? 2.1
+                : smallScreenGrid
+                    ? 2.3
+                    : tabScreenGrid
+                        ? 1.8
+                        : 1.5,
         crossAxisSpacing: 0.0,
         mainAxisSpacing: 0.0,
         shrinkWrap: true,
@@ -53,7 +93,7 @@ class _SlideImageState extends State<SlideImage> {
                     NetworkImage(
                         'https://www.northeastern.edu/graduate/blog/wp-content/uploads/2019/05/BusinessAnalyst_NortheasternGraduateBlog_HeroImage-1.jpeg')
                   ]),
-             /* Container(
+              /* Container(
                   margin: EdgeInsets.only(left: smallScreenGrid ?  250 : 10, top: extraSmallScreenGrid ? 60 : largeScreenGrid ? 50 : smallScreenGrid ? 40 : tabScreenGrid ? 80: 80),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -98,6 +138,6 @@ class _SlideImageState extends State<SlideImage> {
           )
         ],
       ),
-    );
+    );*/
   }
 }
