@@ -6,7 +6,7 @@ import '../widegets/button_widget.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:image_picker_web/image_picker_web.dart';
-import 'package:firebase/firebase.dart' as db;
+import 'package:firebase/firebase.dart' as fb;
 import 'package:file_picker/file_picker.dart';
 
 class PostForm extends StatefulWidget {
@@ -22,8 +22,11 @@ class _PostFormState extends State<PostForm> {
   var _nameController = TextEditingController();
   var _priceController = TextEditingController();
   var _detailController = TextEditingController();
+  var _fileNameTextControll = TextEditingController();
   ImagePicker imagePicker = ImagePicker();
   File file;
+  bool _imageSelected = true;
+  String _path;
 
   //FirebaseStorage storage = FirebaseStorage.instance;
   //final Future<FirebaseApp> _initialization = Firebase.initializeApp();
@@ -118,65 +121,64 @@ class _PostFormState extends State<PostForm> {
                   SizedBox(
                     height: 8,
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        file == null
-                            ? Container(
-                                width: double.infinity,
-                                height: 150,
-                                color: Colors.grey,
-                                child: Center(
-                                  child: RaisedButton(
-                                    onPressed: () {
-                                      selectFile();
-                                    },
-                                    color: Colors.blue,
-                                    child: Text(
-                                      'Select Image',
-                                      style: TextStyle(
-                                          fontSize: 16, color: Colors.white),
+                  
+                      Container(
+                        color: Colors.grey,
+                        width: MediaQuery.of(context).size.width,
+                        height: 80,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left:30),
+                          child: Row(
+                            children:[
+                              AbsorbPointer(
+                                absorbing: true,
+                                                              child: SizedBox(
+                                  width: 300,
+                                  height: 30,
+                                  child: TextField(
+                                    controller: _fileNameTextControll,
+                                    decoration: InputDecoration(focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.black,width: 1),
                                     ),
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    hintText: '(.jpg/.png)',
+                                    border: OutlineInputBorder(),
+                                    contentPadding: EdgeInsets.only(left:20)
+
                                   ),
-                                ),
-                              )
-                            : GestureDetector(
-                                onTap: () {
-                                  selectFile();
-                                },
-                                child: Container(
-                                  width: double.infinity,
-                                  height: 150,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          // image: FileImage(file),
-                                          fit: BoxFit.cover)),
-                                ),
+                                 ), ),
                               ),
-                        SizedBox(
-                          height: 8,
+                              FlatButton(
+                                color: Colors.blue,
+                                onPressed: (){
+                                  uploadStorage();
+                                }, child: Text('Select Image',style: TextStyle(color:Colors.white,),))
+                            ]
+                          ),
                         ),
-                      ],
-                    ),
-                  ),
+                      ),
                   SizedBox(
                     height: 8,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: RaisedButton(
-                      color: Colors.blue,
-                      child: Text(
-                        "Post",
-                        style: TextStyle(color: Colors.white),
+                    child: AbsorbPointer(
+                      absorbing: _imageSelected,
+                      
+                                          child: RaisedButton(
+                        color: _imageSelected ? Colors.black12 : Colors.blue,
+                        child: Text(
+                          "Post",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        
+                        onPressed: () {
+                          if (_formKey.currentState.validate()) {
+                            _formKey.currentState.save();
+                          }
+                        },
                       ),
-                      onPressed: () {
-                        if (_formKey.currentState.validate()) {
-                          _formKey.currentState.save();
-                        }
-                      },
                     ),
                   )
                 ],
@@ -198,6 +200,25 @@ class _PostFormState extends State<PostForm> {
       reader.onLoadEnd.listen((event) {
         onSelected(file);
       });
+    });
+  }
+   // upload selected image to db
+  void uploadStorage() {
+    final dateTime = DateTime.now();
+    final path = 'bannerImage/$dateTime';
+    uploadImage(onSelected: (file) {
+      if (file != null) {
+        setState(() {
+         _fileNameTextControll.text = file.name;
+          _imageSelected = false;
+          _path= path; // this path (url upload)
+        });
+        fb
+            .storage()
+            .refFromURL('gs://booking-b6c08.appspot.com')
+            .child(path)
+            .put(file);
+      }
     });
   }
 }
