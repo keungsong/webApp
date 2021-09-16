@@ -23,10 +23,12 @@ class _PostFormState extends State<PostForm> {
   var _priceController = TextEditingController();
   var _detailController = TextEditingController();
   var _fileNameTextControll = TextEditingController();
+  var _fileLogoTextControll = TextEditingController();
   ImagePicker imagePicker = ImagePicker();
   File file;
   bool _imageSelected = true;
   String _path;
+  bool _visible = false;
 
   //FirebaseStorage storage = FirebaseStorage.instance;
   //final Future<FirebaseApp> _initialization = Firebase.initializeApp();
@@ -78,107 +80,184 @@ class _PostFormState extends State<PostForm> {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Text('Information'),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: TextFormField(
-                      controller: _nameController,
-                      decoration: InputDecoration(labelText: 'Name'),
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return 'required field';
-                        }
-                        return null;
-                      },
-                    ),
+                  SizedBox(
+                    height: 8,
                   ),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: TextFormField(
-                      controller: _priceController,
-                      keyboardType: TextInputType.number,
-                      decoration: InputDecoration(labelText: 'price'),
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return 'required field';
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: TextFormField(
-                      controller: _detailController,
-                      decoration: InputDecoration(labelText: 'Detail'),
-                      validator: (value) {
-                        if (value.isEmpty) {
-                          return 'required field';
-                        }
-                        return null;
-                      },
-                    ),
+                  TextFormField(
+                    controller: _nameController,
+                    decoration: InputDecoration(
+                        labelText: 'Name*',
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                            borderSide: BorderSide(color: Colors.grey)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey))),
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return 'required field';
+                      }
+                      return null;
+                    },
                   ),
                   SizedBox(
                     height: 8,
                   ),
-                  
-                      Container(
-                        color: Colors.grey,
-                        width: MediaQuery.of(context).size.width,
-                        height: 80,
-                        child: Padding(
-                          padding: const EdgeInsets.only(left:30),
-                          child: Row(
-                            children:[
-                              AbsorbPointer(
-                                absorbing: true,
-                                                              child: SizedBox(
-                                  width: 300,
-                                  height: 30,
-                                  child: TextField(
-                                    controller: _fileNameTextControll,
-                                    decoration: InputDecoration(focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.black,width: 1),
-                                    ),
-                                    filled: true,
-                                    fillColor: Colors.white,
-                                    hintText: '(.jpg/.png)',
-                                    border: OutlineInputBorder(),
-                                    contentPadding: EdgeInsets.only(left:20)
-
-                                  ),
-                                 ), ),
+                  TextFormField(
+                    controller: _priceController,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                        labelText: 'Price*',
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(5)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey))),
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return 'required field';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  TextFormField(
+                    maxLines: 10,
+                    textInputAction: TextInputAction.next,
+                    controller: _detailController,
+                    decoration: InputDecoration(
+                        labelText: 'Description*',
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(5)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.grey),
+                            borderRadius: BorderRadius.circular(5))),
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return 'required field';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Container(
+                    color: Colors.grey[200],
+                    width: MediaQuery.of(context).size.width * 0.4,
+                    height: 90,
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.only(left: 10, top: 12, bottom: 10),
+                      child: Column(
+                        children: [
+                          Row(children: [
+                            Text('ProductImage  '),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            AbsorbPointer(
+                              absorbing: true,
+                              child: SizedBox(
+                                width: 300,
+                                height: 30,
+                                child: TextField(
+                                  controller: _fileNameTextControll,
+                                  decoration: InputDecoration(
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Colors.black, width: 1),
+                                      ),
+                                      filled: true,
+                                      fillColor: Colors.white,
+                                      hintText: '(.jpg/.png)',
+                                      border: OutlineInputBorder(),
+                                      contentPadding:
+                                          EdgeInsets.only(left: 20)),
+                                ),
                               ),
-                              FlatButton(
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            FlatButton(
                                 color: Colors.blue,
-                                onPressed: (){
+                                onPressed: () {
                                   uploadStorage();
-                                }, child: Text('Select Image',style: TextStyle(color:Colors.white,),))
-                            ]
+                                },
+                                child: Text(
+                                  'SelectImage',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                )),
+                          ]),
+                          SizedBox(
+                            height: 8,
                           ),
-                        ),
+                          Row(children: [
+                            Text('Company Logo'),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            AbsorbPointer(
+                              absorbing: true,
+                              child: SizedBox(
+                                width: 300,
+                                height: 30,
+                                child: TextField(
+                                  controller: _fileLogoTextControll,
+                                  decoration: InputDecoration(
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Colors.black, width: 1),
+                                      ),
+                                      filled: true,
+                                      fillColor: Colors.white,
+                                      hintText: '(.jpg/.png)',
+                                      border: OutlineInputBorder(),
+                                      contentPadding:
+                                          EdgeInsets.only(left: 20)),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            FlatButton(
+                                color: Colors.blue,
+                                onPressed: () {
+                                  uploadStorageLogo();
+                                },
+                                child: Text(
+                                  'SelectImage',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                )),
+                          ]),
+                        ],
                       ),
+                    ),
+                  ),
                   SizedBox(
                     height: 8,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: AbsorbPointer(
-                      absorbing: _imageSelected,
-                      
-                                          child: RaisedButton(
-                        color: _imageSelected ? Colors.black12 : Colors.blue,
-                        child: Text(
-                          "Post",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        
-                        onPressed: () {
-                          if (_formKey.currentState.validate()) {
-                            _formKey.currentState.save();
-                          }
-                        },
+                    child: RaisedButton(
+                      color: Colors.blue,
+                      child: Text(
+                        "Post Now",
+                        style: TextStyle(color: Colors.white),
                       ),
+                      onPressed: () {
+                        if (_formKey.currentState.validate()) {
+                          _formKey.currentState.save();
+                        }
+                      },
                     ),
                   )
                 ],
@@ -197,21 +276,57 @@ class _PostFormState extends State<PostForm> {
     uploadInput.onChange.listen((event) {
       final file = uploadInput.files.first;
       final reader = FileReader();
+      reader.readAsDataUrl(file);
       reader.onLoadEnd.listen((event) {
         onSelected(file);
       });
     });
   }
-   // upload selected image to db
+
+  // upload selected image to db
   void uploadStorage() {
     final dateTime = DateTime.now();
     final path = 'bannerImage/$dateTime';
     uploadImage(onSelected: (file) {
       if (file != null) {
         setState(() {
-         _fileNameTextControll.text = file.name;
+          _fileNameTextControll.text = file.name;
           _imageSelected = false;
-          _path= path; // this path (url upload)
+          _path = path; // this path (url upload)
+        });
+        fb
+            .storage()
+            .refFromURL('gs://booking-b6c08.appspot.com')
+            .child(path)
+            .put(file);
+      }
+    });
+  }
+
+  void uploadLog({@required Function(File file) onSelected}) {
+    InputElement uploadInput = FileUploadInputElement()..accept = 'image/*';
+    uploadInput.click();
+
+    uploadInput.onChange.listen((event) {
+      final file = uploadInput.files.first;
+      final reader = FileReader();
+      reader.readAsDataUrl(file);
+      reader.onLoadEnd.listen((event) {
+        onSelected(file);
+      });
+    });
+  }
+
+  // upload selected image to db
+  void uploadStorageLogo() {
+    final dateTime = DateTime.now();
+    final path = 'logoImage/$dateTime';
+    uploadImage(onSelected: (file) {
+      if (file != null) {
+        setState(() {
+          _fileLogoTextControll.text = file.name;
+          _imageSelected = false;
+          _path = path; // this path (url upload)
         });
         fb
             .storage()
