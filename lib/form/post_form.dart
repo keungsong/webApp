@@ -1,13 +1,14 @@
 import 'dart:html';
+
+import 'package:ars_progress_dialog/dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart';
-import '../widegets/button_widget.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:image_picker_web/image_picker_web.dart';
+
+import '../services/firebase_services.dart';
+import '../services/firebase_services.dart';
+
 import 'package:firebase/firebase.dart' as fb;
-import 'package:file_picker/file_picker.dart';
+
 
 class PostForm extends StatefulWidget {
   PostForm({Key key}) : super(key: key);
@@ -17,11 +18,14 @@ class PostForm extends StatefulWidget {
 }
 
 class _PostFormState extends State<PostForm> {
+
+
+  FirebaseServices _services = FirebaseServices();
   final _formKey = GlobalKey<FormState>();
 
   var _nameController = TextEditingController();
   var _priceController = TextEditingController();
-  var _detailController = TextEditingController();
+  var _descriptionController = TextEditingController();
   var _fileNameTextControll = TextEditingController();
   var _fileLogoTextControll = TextEditingController();
   ImagePicker imagePicker = ImagePicker();
@@ -29,25 +33,15 @@ class _PostFormState extends State<PostForm> {
   bool _imageSelected = true;
   String _path;
   bool _visible = false;
+  String _url;
+  String _name;
+  String _description;
 
   //FirebaseStorage storage = FirebaseStorage.instance;
   //final Future<FirebaseApp> _initialization = Firebase.initializeApp();
-  String imgUrl;
+  
 
-  Future selectFile() async {
-    /* PickedFile pickedFile = await imagePicker.getImage(
-      source: ImageSource.gallery,
-    );
-    setState(() {
-      file = File(pickedFile.path);
-    });*/
-    final result = await FilePicker.platform.pickFiles(allowMultiple: false);
-
-    if (result == null) return;
-    final path = result.files.single.path;
-
-    // setState(() => file = File(path));
-  }
+  
 
   validate() {
     if (_formKey.currentState.validate()) {}
@@ -55,7 +49,9 @@ class _PostFormState extends State<PostForm> {
 
   @override
   Widget build(BuildContext context) {
-    //  final fileImage = file != null ? basename(file.path) : 'No Image Selected';
+   ArsProgressDialog progressDialog = ArsProgressDialog(context,blur: 2,
+   backgroundColor: Colors.orange.withOpacity(.3),
+   animationDuration: Duration(milliseconds:500));
     return AlertDialog(
       content: Stack(
         overflow: Overflow.visible,
@@ -112,12 +108,12 @@ class _PostFormState extends State<PostForm> {
                             borderRadius: BorderRadius.circular(5)),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.grey))),
-                    validator: (value) {
+                    /*validator: (value) {
                       if (value.isEmpty) {
                         return 'required field';
                       }
                       return null;
-                    },
+                    },*/
                   ),
                   SizedBox(
                     height: 8,
@@ -125,7 +121,7 @@ class _PostFormState extends State<PostForm> {
                   TextFormField(
                     maxLines: 10,
                     textInputAction: TextInputAction.next,
-                    controller: _detailController,
+                    controller: _descriptionController,
                     decoration: InputDecoration(
                         labelText: 'Description*',
                         enabledBorder: OutlineInputBorder(
@@ -134,12 +130,12 @@ class _PostFormState extends State<PostForm> {
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.grey),
                             borderRadius: BorderRadius.circular(5))),
-                    validator: (value) {
+                   /* validator: (value) {
                       if (value.isEmpty) {
                         return 'required field';
                       }
                       return null;
-                    },
+                    },*/
                   ),
                   SizedBox(
                     height: 8,
@@ -247,16 +243,37 @@ class _PostFormState extends State<PostForm> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: RaisedButton(
+                    child: FlatButton(
                       color: Colors.blue,
                       child: Text(
                         "Post Now",
                         style: TextStyle(color: Colors.white),
                       ),
                       onPressed: () {
-                        if (_formKey.currentState.validate()) {
-                          _formKey.currentState.save();
-                        }
+                       if(_nameController.text.isEmpty){
+                         return _services.showMyDialog(
+                           title:'New Post',
+                             message:'required',
+                             context:context
+                         );
+                       }
+                       progressDialog.show();
+                       _services.uploadDataToDb(_url, _nameController.text, _priceController.text).then((downloadUrl){
+                         if(downloadUrl != null){
+                           progressDialog.dismiss();
+                           _services.showMyDialog(
+                             title:'New Post',
+                             message:'Saved Successfully',
+                             context:context
+                           );
+                         }
+                       
+                       });
+                       _nameController.clear();
+                       _priceController.clear();
+                       _descriptionController.clear();
+                       _fileNameTextControll.clear();
+                       _fileLogoTextControll.clear();
                       },
                     ),
                   )
