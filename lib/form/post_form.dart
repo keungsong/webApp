@@ -9,7 +9,6 @@ import '../services/firebase_services.dart';
 
 import 'package:firebase/firebase.dart' as fb;
 
-
 class PostForm extends StatefulWidget {
   PostForm({Key key}) : super(key: key);
 
@@ -18,8 +17,6 @@ class PostForm extends StatefulWidget {
 }
 
 class _PostFormState extends State<PostForm> {
-
-
   FirebaseServices _services = FirebaseServices();
   final _formKey = GlobalKey<FormState>();
 
@@ -31,7 +28,7 @@ class _PostFormState extends State<PostForm> {
   ImagePicker imagePicker = ImagePicker();
   File file;
   bool _imageSelected = true;
-  String _path;
+
   bool _visible = false;
   String _url;
   String _name;
@@ -39,9 +36,6 @@ class _PostFormState extends State<PostForm> {
 
   //FirebaseStorage storage = FirebaseStorage.instance;
   //final Future<FirebaseApp> _initialization = Firebase.initializeApp();
-  
-
-  
 
   validate() {
     if (_formKey.currentState.validate()) {}
@@ -49,9 +43,10 @@ class _PostFormState extends State<PostForm> {
 
   @override
   Widget build(BuildContext context) {
-   ArsProgressDialog progressDialog = ArsProgressDialog(context,blur: 2,
-   backgroundColor: Colors.orange.withOpacity(.3),
-   animationDuration: Duration(milliseconds:500));
+    ArsProgressDialog progressDialog = ArsProgressDialog(context,
+        blur: 2,
+        backgroundColor: Colors.orange.withOpacity(.3),
+        animationDuration: Duration(milliseconds: 500));
     return AlertDialog(
       content: Stack(
         overflow: Overflow.visible,
@@ -88,17 +83,11 @@ class _PostFormState extends State<PostForm> {
                             borderSide: BorderSide(color: Colors.grey)),
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.grey))),
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return 'required field';
-                      }
-                      return null;
-                    },
                   ),
                   SizedBox(
                     height: 8,
                   ),
-                  TextFormField(
+                  /* TextFormField(
                     controller: _priceController,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
@@ -114,7 +103,7 @@ class _PostFormState extends State<PostForm> {
                       }
                       return null;
                     },*/
-                  ),
+                  ),*/
                   SizedBox(
                     height: 8,
                   ),
@@ -130,16 +119,16 @@ class _PostFormState extends State<PostForm> {
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.grey),
                             borderRadius: BorderRadius.circular(5))),
-                   /* validator: (value) {
+                    /* validator: (value) {
                       if (value.isEmpty) {
                         return 'required field';
                       }
                       return null;
                     },*/
                   ),
-                  SizedBox(
+                  /* SizedBox(
                     height: 8,
-                  ),
+                  ),*/
                   Container(
                     color: Colors.grey[200],
                     width: MediaQuery.of(context).size.width * 0.4,
@@ -250,30 +239,36 @@ class _PostFormState extends State<PostForm> {
                         style: TextStyle(color: Colors.white),
                       ),
                       onPressed: () {
-                       if(_nameController.text.isEmpty){
-                         return _services.showMyDialog(
-                           title:'New Post',
-                             message:'required',
-                             context:context
-                         );
-                       }
-                       progressDialog.show();
-                       _services.uploadDataToDb(_url, _nameController.text, _priceController.text).then((downloadUrl){
-                         if(downloadUrl != null){
-                           progressDialog.dismiss();
-                           _services.showMyDialog(
-                             title:'New Post',
-                             message:'Saved Successfully',
-                             context:context
-                           );
-                         }
-                       
-                       });
-                       _nameController.clear();
-                       _priceController.clear();
-                       _descriptionController.clear();
-                       _fileNameTextControll.clear();
-                       _fileLogoTextControll.clear();
+                        if (_nameController.text.isEmpty) {
+                          return _services.showMyDialog(
+                              title: 'New Post',
+                              message: 'required',
+                              context: context);
+                        }
+                        if (_descriptionController.text.isEmpty) {
+                          return _services.showMyDialog(
+                              title: 'New Post',
+                              message: 'required',
+                              context: context);
+                        }
+                        progressDialog.show();
+                        _services
+                            .uploadDataToDb(_url, _nameController.text,
+                                _descriptionController.text)
+                            .then((downloadUrl) {
+                          if (downloadUrl != null) {
+                            progressDialog.dismiss();
+                            _services.showMyDialog(
+                                title: 'New Post',
+                                message: 'Saved Successfully',
+                                context: context);
+                          }
+                        });
+                        _nameController.clear();
+                        _priceController.clear();
+                        _descriptionController.clear();
+                        _fileNameTextControll.clear();
+                        _fileLogoTextControll.clear();
                       },
                     ),
                   )
@@ -303,13 +298,13 @@ class _PostFormState extends State<PostForm> {
   // upload selected image to db
   void uploadStorage() {
     final dateTime = DateTime.now();
-    final path = 'bannerImage/$dateTime';
+    final path = 'ProductImage/$dateTime';
     uploadImage(onSelected: (file) {
       if (file != null) {
         setState(() {
           _fileNameTextControll.text = file.name;
           _imageSelected = false;
-          _path = path; // this path (url upload)
+          _url = path; // this path (url upload)
         });
         fb
             .storage()
@@ -343,7 +338,7 @@ class _PostFormState extends State<PostForm> {
         setState(() {
           _fileLogoTextControll.text = file.name;
           _imageSelected = false;
-          _path = path; // this path (url upload)
+          _url = path; // this path (url upload)
         });
         fb
             .storage()

@@ -2,22 +2,44 @@ import 'dart:html';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:web_app/constants/constants.dart';
-import 'package:web_app/helpers/responsive_helper.dart';
-import 'package:web_app/post/post_card.dart';
-import 'package:web_app/services/firebase_services.dart';
 
-class Posts extends StatelessWidget {
-  //final DocumentSnapshot document;
+class PostCard extends StatelessWidget {
+  final DocumentSnapshot document;
 
-  //Posts({this.document});
+  PostCard(this.document);
 
-  MediaQueryData mediaQuery;
-
-  FirebaseServices _services = FirebaseServices();
   @override
   Widget build(BuildContext context) {
     return /*Container(
+      margin: EdgeInsets.only(
+        left: 100,
+        top: 30,
+      ),
+      child: SizedBox(
+        height: 220,
+        width: 220,
+        child: Card(
+          color: Colors.orange.withOpacity(.9),
+          elevation: 4,
+          child: Padding(
+            padding: EdgeInsets.all(10),
+            child: Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(
+                    height: 220,
+                    width: double.infinity,
+                    child: Image.network(document['image']),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );*/
+        Container(
       margin: EdgeInsets.only(left: 100, top: 30, right: 100),
       child: Container(
         child: GridView.count(
@@ -39,7 +61,8 @@ class Posts extends StatelessWidget {
                         Container(
                           height: MediaQuery.of(context).size.height,
                           width: MediaQuery.of(context).size.width,
-                          child: Image.network('', fit: BoxFit.cover),
+                          child: Image.network(document['logoImage'],
+                              fit: BoxFit.cover),
                         ),
                         Positioned(
                             top: 10,
@@ -49,7 +72,7 @@ class Posts extends StatelessWidget {
                               width: 60,
                               child: CircleAvatar(
                                 backgroundColor: Colors.white,
-                                child: Text(''),
+                                child: Text(document['name']),
                               ),
                             )),
                         Row(
@@ -115,7 +138,7 @@ class Posts extends StatelessWidget {
                     children: [
                       Container(
                           padding: EdgeInsets.all(16),
-                          child: Text('Date:9/08/2021')),
+                          child: Text(document['description'])),
                     ],
                   )
                 ],
@@ -124,31 +147,6 @@ class Posts extends StatelessWidget {
           ],
         ),
       ),
-    );*/
-
-        Container(
-            width: MediaQuery.of(context).size.width,
-            child: StreamBuilder(
-              stream: _services.productData.snapshots(),
-              builder: (BuildContext context,
-                  AsyncSnapshot<QuerySnapshot> snapshot) {
-                if (snapshot.hasError) {
-                  return Center(
-                    child: Text('Something wrong...'),
-                  );
-                }
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                return Wrap(
-                  direction: Axis.horizontal,
-                  children: snapshot.data.docs.map((DocumentSnapshot document) {
-                    return PostCard(document);
-                  }).toList(),
-                );
-              },
-            ));
+    );
   }
 }

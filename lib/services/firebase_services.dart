@@ -6,26 +6,25 @@ class FirebaseServices {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   CollectionReference banners =
       FirebaseFirestore.instance.collection('ImageSlide');
-      CollectionReference productData = 
+  CollectionReference productData =
       FirebaseFirestore.instance.collection('ProductData');
 
   FirebaseStorage storage = FirebaseStorage.instance;
 
-
-
-  Future <String>uploadDataToDb(url,name,description)async{
+  Future<String> uploadDataToDb(url, pName, pDescription) async {
     String downloadUrl = await storage.ref(url).getDownloadURL();
-    if(downloadUrl != null){
-     productData.doc(name).set({
-        'image':downloadUrl,
-        'name':name,
-        'description':description,
-
+    if (downloadUrl != null) {
+      productData.doc(pName).set({
+        'image': downloadUrl,
+        'logoImage': downloadUrl,
+        'name': pName,
+        'description': pDescription
       });
     }
     return downloadUrl;
   }
-Future<void> showMyDialog({title, message, context}) async {
+
+  Future<void> showMyDialog({title, message, context}) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
